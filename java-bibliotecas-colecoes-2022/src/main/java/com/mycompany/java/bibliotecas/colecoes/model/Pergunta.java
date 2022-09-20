@@ -1,6 +1,7 @@
 package com.mycompany.java.bibliotecas.colecoes.model;
 
-import java.util.ArrayList;
+import com.mycompany.java.bibliotecas.colecoes.util.Escrita;
+import com.mycompany.java.bibliotecas.colecoes.util.Leitura;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,40 +29,26 @@ public class Pergunta {
 
     }
 
-    public void adicionaPergunta(String pergunta) {
-        
+    public void adicionaPergunta() {
+
+        Scanner entrada = new Scanner(System.in);
         Leitura leitura = new Leitura();
-        
-        setPerguntas(leitura.lerPergunta(perguntas));
-        
+
+        System.out.print("\nPor favor, digite a pergunta a ser adicionada: ");
+        String pergunta = entrada.nextLine();
+
+        setPerguntas(leitura.lerPergunta(getPerguntas()));
+
         perguntas.add("P" + (perguntas.size() + 1) + "|" + pergunta);
-        retornaEscritaPergunta();
-
-    }
-
-    public void escrevePergunta() {
-
-        Escrita escrita = new Escrita();
-        
-        List<String> perguntas = new ArrayList();
-
-        setPerguntas(escrita.escrevePergunta());
+        retornaEscritaPergunta(perguntas);
 
     }
 
     public List<String> retornaEscritaPergunta(List<String> perguntas) {
+
         Escrita escrita = new Escrita();
 
-        setPerguntas(escrita.escrevePergunta());
-
-        return getPerguntas();
-
-    }
-
-    public List<String> retornaEscritaPergunta() {
-        Escrita escrita = new Escrita();
-
-        setPerguntas(escrita.escrevePergunta());
+        setPerguntas(escrita.escrevePergunta(perguntas));
 
         return getPerguntas();
 
@@ -71,13 +58,15 @@ public class Pergunta {
 
         Scanner entrada = new Scanner(System.in);
 
+        gravaPergunta();
         imprimePergunta();
         System.out.print("Por favor, selecione a pergunta a ser removida: ");
         int opcao = entrada.nextInt();
 
         if (opcao > 4) {
             perguntas.remove(opcao - 1);
-            retornaEscritaPergunta();
+            retornaEscritaPergunta(perguntas);
+            System.out.println("Pergunta removida com sucesso!");
         } else {
             System.out.println("\nNão é possível remover perguntas padrão do sistema!");
         }

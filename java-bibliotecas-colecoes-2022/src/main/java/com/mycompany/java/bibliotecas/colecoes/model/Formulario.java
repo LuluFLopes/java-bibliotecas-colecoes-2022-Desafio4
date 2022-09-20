@@ -1,6 +1,8 @@
 package com.mycompany.java.bibliotecas.colecoes.model;
 
-import com.mycompany.java.bibliotecas.colecoes.util.ValidadorDeTipo;
+import com.mycompany.java.bibliotecas.colecoes.util.Escrita;
+import com.mycompany.java.bibliotecas.colecoes.util.Leitura;
+import com.mycompany.java.bibliotecas.colecoes.util.Ferramentas;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -102,9 +104,7 @@ public class Formulario {
     // Impressao organizada.
     public void imprimeMatriz() {
 
-        System.out.println(listaFormulario);
-
-        //listaFormulario.forEach(System.out::println);
+        listaFormulario.forEach(System.out::println);
     }
 
     // Impressão por idade.
@@ -130,6 +130,8 @@ public class Formulario {
             memoriaIdade.add(Integer.toString(idadeAux));
 
         }
+        
+        System.out.println(" ");
 
     }
 
@@ -165,8 +167,8 @@ public class Formulario {
 
     // Validando a idade do candidato.
     public boolean validaIdade(String resposta) throws Exception {
-        ValidadorDeTipo validador = new ValidadorDeTipo();
-        int idade = validador.converte(resposta);
+        Ferramentas validador = new Ferramentas();
+        int idade = validador.validadorDeTipo(resposta);
 
         if (idade > 0 && idade < 16) {
             System.out.println("\nMuito obrigado por seu interesse de estar com a gente!");

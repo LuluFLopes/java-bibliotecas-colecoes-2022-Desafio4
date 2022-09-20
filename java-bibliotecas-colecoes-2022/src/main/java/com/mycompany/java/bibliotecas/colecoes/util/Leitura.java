@@ -1,4 +1,4 @@
-package com.mycompany.java.bibliotecas.colecoes.model;
+package com.mycompany.java.bibliotecas.colecoes.util;
 
 import java.io.BufferedReader;
 import java.io.File;
